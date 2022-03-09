@@ -11,7 +11,7 @@ Voici ce que vous obtiendrez :
 
 ## :white_check_mark: Utilisation
 
-- pour observer les cartes des différentes dates, ouvrez le fichier `diplomap.html` dans un navigateur internet (fonctionne sur Firefox).
+- pour observer les cartes des différentes dates, ouvrez le fichier `index.html` dans un navigateur internet (fonctionne sur Firefox).
 
 - pour récupérer les cartes plus récentes, utilisez `diplomap.py`, qui va automatiquement chercher les cartes sur https://web.archive.org.
 
