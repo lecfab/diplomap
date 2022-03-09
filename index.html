@@ -15,8 +15,11 @@
             position: relative;
         }
 
-        img {
-            width: 100%;
+        #images img {
+            /* display: block; */
+            max-width: 100%;
+            /* max-height: 80vh; */
+            /* margin: 0 auto; */
             /* clip-path: inset(10% 0.5%); */
             position: absolute;
             top: 0;
@@ -60,8 +63,12 @@
     <div class="main">
         <h1>Évolution de la situation sécuritaire mondiale</h1>
         <p>
+            <a href="https://github.com/lecfab/diplomap" target="_blank" title="Voir sur Github" style="text-decoration: none;">
+                <img src="http://external-content.duckduckgo.com/ip3/github.com.ico" width="16" height="16">
+            </a>
             Période : du <span id="periodStart"></span> au <span id="periodEnd"></span>.
-            Source : <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank">France Diplomatie</a>.</p>
+            Source : <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank">France Diplomatie</a>.
+        </p>
         <div class="slidecontainer">
             <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
         </div>
