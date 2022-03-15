@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Évolution de la situation sécuritaire mondiale</title>
 
+    <link rel="icon" type="image/png" href="icon-world.png">
     <style media="screen">
         .main {
             max-width: 1280px;
@@ -17,8 +18,9 @@
 
         #images img {
             /* display: block; */
-            max-width: 100%;
-            /* max-height: 80vh; */
+            width: 100%;
+            max-width: 1280px;
+            max-height: 80vh;
             /* margin: 0 auto; */
             /* clip-path: inset(10% 0.5%); */
             position: absolute;
@@ -112,12 +114,17 @@
         });
     }
 
-    function dateFromUrl(url) {
+    function dateFromUrl(url) { // extract format /yyyymmdd_
         return new Date(url.replace(/^.*\/([0-9]{4})([0-9]{2})([0-9]{2})_.*$/, "$1-$2-$3"));
     }
 
     var images = [
+        "https://static.lpnt.fr/images/2014/10/02/2850046-monde-jpg_2486949.jpg?/20140926_",
+        "http://www.lerepairedesmotards.com/img/actu/2016/carte-pays-dangereux-voyage_hd.jpg?/20160623_",
+        "https://initiadroit.com/wp-content/uploads/2016/12/Conseils-aux-voyageurs.jpg?/20161116_",
+        // "https://www.globalsecurity.org/military/world/images/map-world-2016-12-02-ed.jpg",
         "https://web.archive.org/web/20171112180247if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20170920_fcvregional_monde_cle4c4f46-54673.jpg?1507285847",
+        "https://www.boursedescredits.com/pics/library/assurance-pret-immobilier-expatrie.jpg?/20161117_",
         "https://web.archive.org/web/20180614115336if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20180321_fcvregional_monde_cle421fad-562d7.jpg?1521749207",
         "https://web.archive.org/web/20190512194828if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20180702_fcvregional_monde_cle4b3258-04ad1.jpg?1532524109",
         "https://web.archive.org/web/20190512012322if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20181128_fcvregional_monde_cle4ffc7a-07262.jpg?1543413503",
