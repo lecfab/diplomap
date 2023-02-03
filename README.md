@@ -15,7 +15,7 @@ Voici ce que vous obtiendrez :
 
 - pour récupérer les cartes plus récentes, utilisez `diplomap-search.py`, qui va automatiquement chercher les cartes sur https://web.archive.org. Par exemple, `diplomap-search.py 2022 2023` va chercher une carte par mois au cours des années 2022 et 2023.
 
-- pour télécharger toutes les cartes à partir des url connues, tapez `diplomap-download.py` 
+- pour télécharger toutes les cartes à partir des url connues, tapez `diplomap-download.py`.
 
 
 ## :busts_in_silhouette: Contributions
@@ -25,7 +25,7 @@ Fabrice Lécuyer, 2022
 Ce projet n'est pas officiel et n'est lié ni à France Diplomatie ni à Web Archive.
 
 #### :bulb: Idées pour participer
-- [ ] trouver les cartes datant d'avant 2017.
+- [ ] trouver les cartes datant d'avant 2014.
 - [ ] rapporter un bug dans les [issues](./issues) (il faut créer un compte github).
 - [ ] suggérer une amélioration dans les [issues](./issues).
 - [ ] tester de nouveaux navigateurs (Opéra, Safari, Edge, etc).
