@@ -72,19 +72,19 @@
             Source : <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank">France Diplomatie</a>.
         </p>
         <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="date-range">
         </div>
         <div id="images"></div>
     </div>
 </body>
 
 <script type="text/javascript">
-    var slider = document.getElementById("myRange");
+    var slider = document.getElementById("date-range");
     var nbLoads = 0;
 
     function loadImage(i) {
-        if(nbLoads > 3 * images.length) return;
-        nbLoads ++;
+        if (nbLoads > 3 * images.length) return;
+        nbLoads++;
         let id = "img" + i
         let node = document.getElementById(id);
         if (node == null) {
@@ -98,8 +98,7 @@
             node.id = id;
             // node.onload = function() { showImage(i, true); }
             document.getElementById("images").appendChild(node);
-        }
-        else node.src = images[i] + "#" + (new Date().getTime());
+        } else node.src = images[i] + "#" + (new Date().getTime());
     }
 
     function showImage(i, init = false) {
@@ -119,9 +118,10 @@
         return new Date(url.replace(/^.*\/([0-9]{4})([0-9]{2})([0-9]{2})_.*$/, "$1-$2-$3"));
     }
 
+    var images;
     async function getImages() {
         const response = await fetch('images.json', { headers: {'Accept': 'application/json'} });
-        const images = await response.json();
+        images = await response.json();
 
         slider.min = 0;
         slider.max = images.length - 1;
@@ -130,59 +130,13 @@
             showImage(slider.value);
         });
         document.getElementById("periodStart").innerHTML = dateFromUrl(images[0]).toLocaleDateString();
-        document.getElementById("periodEnd").innerHTML = dateFromUrl(images[images.length-1]).toLocaleDateString();
-
+        document.getElementById("periodEnd").innerHTML = dateFromUrl(images[images.length - 1]).toLocaleDateString();
 
         for (let i = 0; i < images.length; i++) {
             loadImage(i);
         }
     }
     getImages();
-
-    // var images = [
-    //     "https://static.lpnt.fr/images/2014/10/02/2850046-monde-jpg_2486949.jpg?/20140926_",
-    //     "https://web.archive.org/web/20150912221552if_/http://www.diplomatie.gouv.fr/fr/local/cache-vignettes/L1280xH886/20150825_fcvregional_monde_cle4a53ce-6b741.jpg",
-    //     "https://web.archive.org/web/20160322091646if_/http://diplomatie.gouv.fr/fr/local/cache-vignettes/L1280xH886/20160212_fcvregional_monde_cle47c788-fb142.jpg",
-    //     "https://web.archive.org/web/20170121165847/http://www.diplomatie.gouv.fr/fr/local/cache-vignettes/L1280xH886/20160427_fcvregional_monde_cle4a892b-9f60f.jpg",
-    //     "https://web.archive.org/web/20160712161302if_/http://www.diplomatie.gouv.fr/fr/local/cache-vignettes/L1280xH886/20160623_fcvregional_monde_cle4e927f-1-0db03.jpg", // "http://www.lerepairedesmotards.com/img/actu/2016/carte-pays-dangereux-voyage_hd.jpg?/20160623_",
-    //     "https://web.archive.org/web/20170102110411if_/http://www.diplomatie.gouv.fr/fr/local/cache-vignettes/L1280xH886/20161006_fcvregional_monde_2_cle824b99-8c4c8.jpg",
-    //     "https://initiadroit.com/wp-content/uploads/2016/12/Conseils-aux-voyageurs.jpg?/20161116_",
-    //     "https://web.archive.org/web/20170128195001/http://www.diplomatie.gouv.fr/fr/local/cache-vignettes/L1280xH886/20161202_fcvregional_monde_cle4d2d72-2d950.jpg",
-    //     "https://web.archive.org/web/20171112180247if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20170920_fcvregional_monde_cle4c4f46-54673.jpg?1507285847",
-    //     "https://www.boursedescredits.com/pics/library/assurance-pret-immobilier-expatrie.jpg?/20161117_",
-    //     "https://web.archive.org/web/20180614115336if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20180321_fcvregional_monde_cle421fad-562d7.jpg?1521749207",
-    //     "https://web.archive.org/web/20190512194828if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20180702_fcvregional_monde_cle4b3258-04ad1.jpg?1532524109",
-    //     "https://web.archive.org/web/20190512012322if_/https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20181128_fcvregional_monde_cle4ffc7a-07262.jpg?1543413503",
-    // ].concat([
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20190528_fcvregional_monde_cle46da55-c2115.jpg?1559042248',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20190620_fcvregional_monde_cle45be1a-aa4e7.jpg?1561107394',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20191001_fcvregional_monde_cle4431f1-f02e0.jpg?1569950616',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20191112_fcvregional_monde_cle44f11d-c6a7f.jpg?1573570390',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20200107_fcvregional_monde_cle4c3564-abff9.jpg?1578473777',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20200224_fcvregional_monde_cle41e42e-1-927e2.jpg?1582707400',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20200302_fcvregional_monde_cle438439-1-d2270.jpg?1583490375',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20200429_fcvregional_monde_cle411e28-33454.jpg?1588182010',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH886/20200626_fcvregional_monde_cle4de119-1-dd5b5.jpg?1594830375',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20200827_fcvregional_monde_v2-01_cle052667-1-599bd.jpg?1598533688',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20200921_fcvregional_monde_cle4d2ba5-6e26c.jpg?1600707795',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20201008_fcvregional_monde_cle415518-6f552.jpg?1602180560',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20201126_fcvregional_monde-01_cle8e8a26-4802b.jpg?1606411720',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210129_fcvregional_monde_cle4482d7-21ecd.jpg?1611946571',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210211_fcvregional_monde_cle415a25-81674.jpg?1613060542',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210310_fcvregional_monde_antonine_cle01adc6-54cae.jpg?1615395675',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210408_fcvregional_monde_cle473c12-3eed9.jpg?1617893779',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210615_fcvregional_monde_cle411b79-c7e8d.jpg?1623769511',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210726_fcvregional_monde_cle418ed8-93e89.jpg?1627287804',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210820_fcvregional_monde_cle466afd-e2978.jpg?1629454289',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20210917_fcvregional_monde_cle469aea-b89a9.jpg?1631871206',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20211130_fcvregional_monde_cle4b1921-27207.jpg?1638265642',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20211220_fcvregional_monde-01_cle82395c-c374a.jpg?1640022448',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20220122_fcvregional_monde_cle421cce-a51ba.jpg?1642951695',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20220227_fcvregional_monde_cle4b3246-ae05d.jpg?1645986147',
-    //     'https://www.diplomatie.gouv.fr/local/cache-vignettes/L1280xH887/20220303_fcvregional_monde_cle4aeffb-ce8b1.jpg?1646320225',
-    // ]);
-
-
 </script>
 
 </html>
