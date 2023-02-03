@@ -90,6 +90,9 @@ def find_image(text):
         raise Exception(f"Image not found; try archive.")
     return url
 
+def get_url_date(url):
+    return re.sub(r'^.*/([0-9]{4})([0-9]{2})([0-9]{2})_.*$', r"\1-\2-\3",  url)
+
 def record_urls(images):
     """Adds found urls to a json file
     Args: list of valid urls of world-safety maps
@@ -103,7 +106,7 @@ def record_urls(images):
 
     print(f"Total images: {len(updated_images)} ({len(former_images)} existing, {len(images)} found)")
     with open(filename, "w") as file_write:
-        json.dump(sorted(list(updated_images)), file_write, indent=4)
+        json.dump(sorted(list(updated_images), key=get_url_date), file_write, indent=4)
 
 if __name__ == "__main__":
     main()
