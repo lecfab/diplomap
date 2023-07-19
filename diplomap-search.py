@@ -17,7 +17,23 @@ s = requests.Session(); s.mount('https://', HTTPAdapter(max_retries=5))
 
 
 def main():
-    record_urls(list(get_monthly_images()))
+    urls = list(get_monthly_images())
+    current = get_current_image()
+    if current is not None: urls.append(current)
+    record_urls(urls)
+
+def get_current_image():
+    year = int(date.today().strftime("%Y"))
+    url = get_minister_url(year)
+    html = html_from_url(url)
+
+    try:
+        image_url = find_image(html)
+    except Exception as err:
+        print("Image error:", err)
+        return None
+
+    return image_url
 
 def get_monthly_images():
     for year, month in get_period():
@@ -50,25 +66,32 @@ def get_period():
                 return
             yield year, str_month
 
+def get_minister_url(year: int):
+    """ Returns the apropriate url for a given year
+    Args: year
+    Returns: url of a diplomatie.gouv.fr page
+    """
+    core_url = "diplomatie.gouv.fr/fr/conseils-aux-voyageurs"
+    if year < 2018: return f"http://{core_url}/conseils-par-pays"
+    elif year < 2019: return f"https://www.{core_url}/conseils-par-pays-destination"
+    else: return f"https://www.{core_url}"
+
+def html_from_url(url: str):
+    print(f"Request: {url}")
+    r = requests.get(url, timeout=5)
+    if not r.ok: raise Exception(r.status_code)
+    return r.text
 
 def find_archive(year: int, month: str):
     """Find an archived page for given date
     Args: year and month to search for in the web archive
     Returns: html content of an archived diplomatie.gouv.fr page
     """
-
-    core_url = "diplomatie.gouv.fr/fr/conseils-aux-voyageurs"
-    if year < 2018: archive = f"http://{core_url}/conseils-par-pays"
-    elif year < 2019: archive = f"https://www.{core_url}/conseils-par-pays-destination"
-    else: archive = f"https://www.{core_url}"
-
     # chercher la page dans les archives autour de la date donnée
+    archive = get_minister_url(year)
     archiver = f"https://web.archive.org/web/{year}{month}"
     request_link = f"{archiver}/{archive}"
-    print(f"Request: {request_link}")
-    r = requests.get(request_link, timeout=5)
-    if not r.ok: raise Exception(r.status_code)
-    return r.text
+    return html_from_url(request_link)
 
 def find_image(text):
     """Find the url of the map in an html content

@@ -13,9 +13,9 @@ Voici ce que vous obtiendrez :
 
 - pour observer les cartes des différentes dates, ouvrez le fichier `index.html` dans un navigateur internet (fonctionne sur Firefox).
 
-- pour récupérer les cartes plus récentes, utilisez `diplomap-search.py`, qui va automatiquement chercher les cartes sur https://web.archive.org. Par exemple, `diplomap-search.py 2022 2023` va chercher une carte par mois au cours des années 2022 et 2023.
+- pour récupérer les cartes plus récentes, utilisez `diplomap-search.py`, qui va automatiquement chercher les cartes sur https://web.archive.org. Par exemple, `python3 diplomap-search.py 2022 2023` va chercher une carte par mois au cours des années 2022 et 2023.
 
-- pour télécharger toutes les cartes à partir des url connues, tapez `diplomap-download.py`.
+- pour télécharger toutes les cartes à partir des url connues, tapez `python3 diplomap-download.py`.
 
 
 ## :busts_in_silhouette: Contributions
